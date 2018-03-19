@@ -159,6 +159,10 @@ chunk('PLTE', {rgb, BitDepth, ColorTuples}) ->
     L = [<<R:BitDepth, G:BitDepth, B:BitDepth>> || {R, G, B} <- ColorTuples],
     chunk(<<"PLTE">>, list_to_binary(L));
 
+chunk('PLTE', {rgba, BitDepth, ColorTuples}) ->
+    L = [<<R:BitDepth, G:BitDepth, B:BitDepth, A:BitDepth>> || {R, G, B, A} <- ColorTuples],
+    chunk(<<"PLTE">>, list_to_binary(L));
+
 chunk(Type, Data) when is_binary(Type),
                        is_binary(Data) ->
     Length = byte_size(Data),
